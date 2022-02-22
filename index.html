@@ -146,6 +146,208 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/13/Process-Thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nothing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/13/Process-Thread/" class="post-title-link" itemprop="url">Process & Thread</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-13 17:11:34 / Modified: 17:22:49" itemprop="dateCreated datePublished" datetime="2022-02-13T17:11:34+08:00">2022-02-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="根据进程名获取进程ID"><a href="#根据进程名获取进程ID" class="headerlink" title="根据进程名获取进程ID"></a>根据进程名获取进程ID</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tlhelp32.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">DWORD <span class="title">get_process_id_by_name</span><span class="params">(LPTSTR lpProcessName, DWORD &amp;dwPid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BOOL bRet = ERROR_NOT_FOUND;</span><br><span class="line">	PROCESSENTRY32 pe32 = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (hProcessSnap == INVALID_HANDLE_VALUE)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> bRet;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pe32.dwSize = <span class="keyword">sizeof</span>(PROCESSENTRY32);</span><br><span class="line">	<span class="keyword">if</span> (!Process32First(hProcessSnap, &amp;pe32))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">goto</span> EXIT;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (lstrcmpi(lpProcessName, pe32.szExeFile) == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			dwPid = pe32.th32ProcessID;</span><br><span class="line">			bRet = ERROR_SUCCESS;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125; <span class="keyword">while</span> (Process32Next(hProcessSnap, &amp;pe32));</span><br><span class="line"></span><br><span class="line">EXIT:</span><br><span class="line">	CloseHandle(hProcessSnap);</span><br><span class="line">	<span class="keyword">return</span> bRet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/04/PEB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nothing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/04/PEB/" class="post-title-link" itemprop="url">PEB</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-04 00:23:32" itemprop="dateCreated datePublished" datetime="2022-01-04T00:23:32+08:00">2022-01-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-13 14:58:31" itemprop="dateModified" datetime="2022-02-13T14:58:31+08:00">2022-02-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="PEB-自定义结构体"><a href="#PEB-自定义结构体" class="headerlink" title="PEB 自定义结构体"></a>PEB 自定义结构体</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/04/PEB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/26/PE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nothing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/26/PE/" class="post-title-link" itemprop="url">PE</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-26 01:10:20" itemprop="dateCreated datePublished" datetime="2021-12-26T01:10:20+08:00">2021-12-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-13 14:59:14" itemprop="dateModified" datetime="2022-02-13T14:59:14+08:00">2022-02-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="重定位表修复"><a href="#重定位表修复" class="headerlink" title="重定位表修复"></a>重定位表修复</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/26/PE/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/Tools/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -177,7 +379,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-22 00:09:18" itemprop="dateModified" datetime="2021-12-22T00:09:18+08:00">2021-12-22</time>
+                <time title="Modified: 2022-02-22 23:59:31" itemprop="dateModified" datetime="2022-02-22T23:59:31+08:00">2022-02-22</time>
               </span>
 
           
@@ -321,7 +523,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-16 14:24:22" itemprop="dateModified" datetime="2021-01-16T14:24:22+08:00">2021-01-16</time>
+                <time title="Modified: 2021-12-26 01:33:14" itemprop="dateModified" datetime="2021-12-26T01:33:14+08:00">2021-12-26</time>
               </span>
 
           
@@ -428,7 +630,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -456,7 +658,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -466,6 +668,26 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -515,6 +737,7 @@
   
 
   
+
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

@@ -20,15 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Nothing">
-<meta property="og:url" content="http://example.com/archives/2021/12/index.html">
+  <meta name="description" content="根据进程名获取进程ID1234567891011121314151617181920212223242526272829303132333435#include &lt;windows.h&gt;#include &lt;tlhelp32.h&gt;DWORD get_process_id_by_name(LPTSTR lpProcessName, DWORD &amp;dwPid)&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Process &amp; Thread">
+<meta property="og:url" content="http://example.com/2022/02/13/Process-Thread/index.html">
 <meta property="og:site_name" content="Nothing">
+<meta property="og:description" content="根据进程名获取进程ID1234567891011121314151617181920212223242526272829303132333435#include &lt;windows.h&gt;#include &lt;tlhelp32.h&gt;DWORD get_process_id_by_name(LPTSTR lpProcessName, DWORD &amp;dwPid)&amp;#123;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-13T09:11:34.000Z">
+<meta property="article:modified_time" content="2022-02-13T09:22:49.083Z">
 <meta property="article:author" content="John">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2021/12/">
+<link rel="canonical" href="http://example.com/2022/02/13/Process-Thread/">
 
 
 <script id="page-configurations">
@@ -36,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | Nothing</title>
+  <title>Process & Thread | Nothing</title>
   
 
 
@@ -140,90 +144,83 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 6 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/13/Process-Thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nothing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Process & Thread
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-13 17:11:34 / Modified: 17:22:49" itemprop="dateCreated datePublished" datetime="2022-02-13T17:11:34+08:00">2022-02-13</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h1 id="根据进程名获取进程ID"><a href="#根据进程名获取进程ID" class="headerlink" title="根据进程名获取进程ID"></a>根据进程名获取进程ID</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tlhelp32.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">DWORD <span class="title">get_process_id_by_name</span><span class="params">(LPTSTR lpProcessName, DWORD &amp;dwPid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BOOL bRet = ERROR_NOT_FOUND;</span><br><span class="line">	PROCESSENTRY32 pe32 = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (hProcessSnap == INVALID_HANDLE_VALUE)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> bRet;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pe32.dwSize = <span class="keyword">sizeof</span>(PROCESSENTRY32);</span><br><span class="line">	<span class="keyword">if</span> (!Process32First(hProcessSnap, &amp;pe32))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">goto</span> EXIT;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (lstrcmpi(lpProcessName, pe32.szExeFile) == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			dwPid = pe32.th32ProcessID;</span><br><span class="line">			bRet = ERROR_SUCCESS;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125; <span class="keyword">while</span> (Process32Next(hProcessSnap, &amp;pe32));</span><br><span class="line"></span><br><span class="line">EXIT:</span><br><span class="line">	CloseHandle(hProcessSnap);</span><br><span class="line">	<span class="keyword">return</span> bRet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-26T01:10:20+08:00"
-              content="2021-12-26">
-          12-26
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/26/PE/" itemprop="url">
-            <span itemprop="name">PE</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-21T23:50:43+08:00"
-              content="2021-12-21">
-          12-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/21/Tools/" itemprop="url">
-            <span itemprop="name">Tools</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-13T01:11:00+08:00"
-              content="2021-12-13">
-          12-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/13/Windows-Services/" itemprop="url">
-            <span itemprop="name">Windows Services</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+        
 
 
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/04/PEB/" rel="prev" title="PEB">
+      <i class="fa fa-chevron-left"></i> PEB
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-  </div>
+      </footer>
+    
+  </article>
   
   
-  
-
   
 
 
@@ -276,6 +273,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E8%BF%9B%E7%A8%8B%E5%90%8D%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8BID"><span class="nav-number">1.</span> <span class="nav-text">根据进程名获取进程ID</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
