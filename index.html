@@ -21,9 +21,9 @@
   </script>
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="Nothing">
+<meta property="og:title" content="Nobody">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Nothing">
+<meta property="og:site_name" content="Nobody">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
   };
 </script>
 
-  <title>Nothing</title>
+  <title>Nobody</title>
   
 
 
@@ -92,7 +92,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Nothing</h1>
+      <h1 class="site-title">Nobody</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">A Reason For Being</p>
@@ -155,12 +155,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nothing">
+      <meta itemprop="name" content="Nobody">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/13/Process-Thread/" class="post-title-link" itemprop="url">Process & Thread</a>
+            <a href="/2022/02/13/Process-Thread/" class="post-title-link" itemprop="url">Process & Thread & File</a>
         </h2>
 
         <div class="post-meta">
@@ -169,10 +169,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-02-13 17:11:34 / Modified: 17:22:49" itemprop="dateCreated datePublished" datetime="2022-02-13T17:11:34+08:00">2022-02-13</time>
+              <time title="Created: 2022-02-13 17:11:34" itemprop="dateCreated datePublished" datetime="2022-02-13T17:11:34+08:00">2022-02-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-04 01:13:22" itemprop="dateModified" datetime="2022-03-04T01:13:22+08:00">2022-03-04</time>
+              </span>
 
           
 
@@ -185,7 +191,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="根据进程名获取进程ID"><a href="#根据进程名获取进程ID" class="headerlink" title="根据进程名获取进程ID"></a>根据进程名获取进程ID</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tlhelp32.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">DWORD <span class="title">get_process_id_by_name</span><span class="params">(LPTSTR lpProcessName, DWORD &amp;dwPid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	BOOL bRet = ERROR_NOT_FOUND;</span><br><span class="line">	PROCESSENTRY32 pe32 = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (hProcessSnap == INVALID_HANDLE_VALUE)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> bRet;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pe32.dwSize = <span class="keyword">sizeof</span>(PROCESSENTRY32);</span><br><span class="line">	<span class="keyword">if</span> (!Process32First(hProcessSnap, &amp;pe32))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">goto</span> EXIT;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (lstrcmpi(lpProcessName, pe32.szExeFile) == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			dwPid = pe32.th32ProcessID;</span><br><span class="line">			bRet = ERROR_SUCCESS;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125; <span class="keyword">while</span> (Process32Next(hProcessSnap, &amp;pe32));</span><br><span class="line"></span><br><span class="line">EXIT:</span><br><span class="line">	CloseHandle(hProcessSnap);</span><br><span class="line">	<span class="keyword">return</span> bRet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/13/Process-Thread/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -213,7 +227,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nothing">
+      <meta itemprop="name" content="Nobody">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -285,7 +299,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nothing">
+      <meta itemprop="name" content="Nobody">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -357,7 +371,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nothing">
+      <meta itemprop="name" content="Nobody">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -429,7 +443,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nothing">
+      <meta itemprop="name" content="Nobody">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -451,7 +465,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-02-25 00:11:13" itemprop="dateModified" datetime="2022-02-25T00:11:13+08:00">2022-02-25</time>
+                <time title="Modified: 2022-03-04 01:12:07" itemprop="dateModified" datetime="2022-03-04T01:12:07+08:00">2022-03-04</time>
               </span>
 
           
@@ -465,7 +479,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Stop-Service"><a href="#Stop-Service" class="headerlink" title="Stop Service"></a>Stop Service</h2>
+          <h2 id="手动创建服务"><a href="#手动创建服务" class="headerlink" title="手动创建服务"></a>手动创建服务</h2><p>  <code>sc create SvcName binpath= &quot;全路径&quot; displayname= &quot;displayname&quot; start= auto</code></p>
+<h2 id="完整的服务程序（exe）"><a href="#完整的服务程序（exe）" class="headerlink" title="完整的服务程序（exe）"></a>完整的服务程序（exe）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;windows.h&gt;</span><br><span class="line">#include &lt;tchar.h&gt;</span><br><span class="line"></span><br><span class="line">#pragma comment(lib, &quot;advapi32.lib&quot;)</span><br><span class="line"></span><br><span class="line">#define SVCNAME TEXT(&quot;SvcName&quot;)</span><br><span class="line"></span><br><span class="line">SERVICE_STATUS          gSvcStatus;</span><br><span class="line">SERVICE_STATUS_HANDLE   gSvcStatusHandle;</span><br><span class="line">HANDLE                  ghSvcStopEvent &#x3D; NULL;</span><br><span class="line"></span><br><span class="line">VOID SvcInstall(void);</span><br><span class="line">VOID WINAPI SvcCtrlHandler(DWORD);</span><br><span class="line">VOID WINAPI SvcMain(DWORD, LPTSTR *);</span><br><span class="line"></span><br><span class="line">VOID ReportSvcStatus(DWORD, DWORD, DWORD);</span><br><span class="line">VOID SvcInit(DWORD, LPTSTR *);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int _tmain(int argc, TCHAR *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F; If command-line parameter is &quot;install&quot;, install the service. </span><br><span class="line">	&#x2F;&#x2F; Otherwise, the service is probably being started by the SCM.</span><br><span class="line"></span><br><span class="line">	if (lstrcmpi(argv[1], TEXT(&quot;install&quot;)) &#x3D;&#x3D; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		SvcInstall();</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; TO_DO: Add any additional services for the process to this table.</span><br><span class="line">	SERVICE_TABLE_ENTRY DispatchTable[] &#x3D;</span><br><span class="line">	&#123;</span><br><span class="line">		&#123; (LPTSTR)SVCNAME, (LPSERVICE_MAIN_FUNCTION)SvcMain &#125;,</span><br><span class="line">		&#123; NULL, NULL &#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; This call returns when the service has stopped. </span><br><span class="line">	&#x2F;&#x2F; The process should simply terminate when the call returns.</span><br><span class="line">	StartServiceCtrlDispatcher(DispatchTable);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">VOID SvcInstall()</span><br><span class="line">&#123;</span><br><span class="line">	SC_HANDLE schSCManager;</span><br><span class="line">	SC_HANDLE schService;</span><br><span class="line">	TCHAR szPath[MAX_PATH];</span><br><span class="line"></span><br><span class="line">	if (!GetModuleFileName(NULL, szPath, MAX_PATH))</span><br><span class="line">	&#123;</span><br><span class="line">		&#x2F;&#x2F;printf(&quot;Cannot install service (%d)\n&quot;, GetLastError());</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; Get a handle to the SCM database. </span><br><span class="line"></span><br><span class="line">	schSCManager &#x3D; OpenSCManager(</span><br><span class="line">		NULL,                    &#x2F;&#x2F; local computer</span><br><span class="line">		NULL,                    &#x2F;&#x2F; ServicesActive database </span><br><span class="line">		SC_MANAGER_ALL_ACCESS);  &#x2F;&#x2F; full access rights </span><br><span class="line"></span><br><span class="line">	if (NULL &#x3D;&#x3D; schSCManager)</span><br><span class="line">	&#123;</span><br><span class="line">		&#x2F;&#x2F;printf(&quot;OpenSCManager failed (%d)\n&quot;, GetLastError());</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; Create the service</span><br><span class="line"></span><br><span class="line">	schService &#x3D; CreateService(</span><br><span class="line">		schSCManager,              &#x2F;&#x2F; SCM database </span><br><span class="line">		SVCNAME,                   &#x2F;&#x2F; name of service </span><br><span class="line">		SVCNAME,                   &#x2F;&#x2F; service name to display </span><br><span class="line">		SERVICE_ALL_ACCESS,        &#x2F;&#x2F; desired access </span><br><span class="line">		SERVICE_WIN32_OWN_PROCESS, &#x2F;&#x2F; service type </span><br><span class="line">		SERVICE_AUTO_START,        &#x2F;&#x2F; start type </span><br><span class="line">		SERVICE_ERROR_NORMAL,      &#x2F;&#x2F; error control type </span><br><span class="line">		szPath,                    &#x2F;&#x2F; path to service&#39;s binary </span><br><span class="line">		NULL,                      &#x2F;&#x2F; no load ordering group </span><br><span class="line">		NULL,                      &#x2F;&#x2F; no tag identifier </span><br><span class="line">		NULL,                      &#x2F;&#x2F; no dependencies </span><br><span class="line">		NULL,                      &#x2F;&#x2F; LocalSystem account </span><br><span class="line">		NULL);                     &#x2F;&#x2F; no password </span><br><span class="line"></span><br><span class="line">	if (schService &#x3D;&#x3D; NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		&#x2F;&#x2F;printf(&quot;CreateService failed (%d)\n&quot;, GetLastError());</span><br><span class="line">		CloseServiceHandle(schSCManager);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		&#x2F;&#x2F;printf(&quot;Service installed successfully\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	CloseServiceHandle(schService);</span><br><span class="line">	CloseServiceHandle(schSCManager);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">VOID WINAPI SvcMain(DWORD dwArgc, LPTSTR *lpszArgv)</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F; Register the handler function for the service</span><br><span class="line"></span><br><span class="line">	gSvcStatusHandle &#x3D; RegisterServiceCtrlHandler(</span><br><span class="line">		SVCNAME,</span><br><span class="line">		SvcCtrlHandler);</span><br><span class="line"></span><br><span class="line">	if (!gSvcStatusHandle)</span><br><span class="line">	&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; These SERVICE_STATUS members remain as set here</span><br><span class="line"></span><br><span class="line">	gSvcStatus.dwServiceType &#x3D; SERVICE_WIN32_OWN_PROCESS;</span><br><span class="line">	gSvcStatus.dwServiceSpecificExitCode &#x3D; 0;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; Report initial status to the SCM</span><br><span class="line"></span><br><span class="line">	ReportSvcStatus(SERVICE_START_PENDING, NO_ERROR, 3000);</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; Perform service-specific initialization and work.</span><br><span class="line"></span><br><span class="line">	SvcInit(dwArgc, lpszArgv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">VOID SvcInit(DWORD dwArgc, LPTSTR *lpszArgv)</span><br><span class="line">&#123;</span><br><span class="line">	ghSvcStopEvent &#x3D; CreateEvent(</span><br><span class="line">		NULL,    &#x2F;&#x2F; default security attributes</span><br><span class="line">		TRUE,    &#x2F;&#x2F; manual reset event</span><br><span class="line">		FALSE,   &#x2F;&#x2F; not signaled</span><br><span class="line">		NULL);   &#x2F;&#x2F; no name</span><br><span class="line"></span><br><span class="line">	if (ghSvcStopEvent &#x3D;&#x3D; NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; Report running status when initialization is complete.</span><br><span class="line"></span><br><span class="line">	ReportSvcStatus(SERVICE_RUNNING, NO_ERROR, 0);</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; TO_DO: Perform work until service stops.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	while (1)</span><br><span class="line">	&#123;</span><br><span class="line">		&#x2F;&#x2F; Check whether to stop the service.</span><br><span class="line"></span><br><span class="line">		WaitForSingleObject(ghSvcStopEvent, INFINITE);</span><br><span class="line"></span><br><span class="line">		ReportSvcStatus(SERVICE_STOPPED, NO_ERROR, 0);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">VOID ReportSvcStatus(DWORD dwCurrentState,</span><br><span class="line">	DWORD dwWin32ExitCode,</span><br><span class="line">	DWORD dwWaitHint)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; Fill in the SERVICE_STATUS structure.</span><br><span class="line"></span><br><span class="line">	gSvcStatus.dwCurrentState &#x3D; dwCurrentState;</span><br><span class="line">	gSvcStatus.dwWin32ExitCode &#x3D; dwWin32ExitCode;</span><br><span class="line">	gSvcStatus.dwWaitHint &#x3D; dwWaitHint;</span><br><span class="line"></span><br><span class="line">	if (dwCurrentState &#x3D;&#x3D; SERVICE_START_PENDING)</span><br><span class="line">	&#123;</span><br><span class="line">		gSvcStatus.dwControlsAccepted &#x3D; 0;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		gSvcStatus.dwControlsAccepted &#x3D; SERVICE_ACCEPT_STOP;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; Report the status of the service to the SCM.</span><br><span class="line">	SetServiceStatus(gSvcStatusHandle, &amp;gSvcStatus);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">VOID WINAPI SvcCtrlHandler(DWORD dwCtrl)</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F; Handle the requested control code. </span><br><span class="line"></span><br><span class="line">	switch (dwCtrl)</span><br><span class="line">	&#123;</span><br><span class="line">	case SERVICE_CONTROL_STOP:</span><br><span class="line">		ReportSvcStatus(SERVICE_STOP_PENDING, NO_ERROR, 0);</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F; Signal the service to stop.</span><br><span class="line"></span><br><span class="line">		SetEvent(ghSvcStopEvent);</span><br><span class="line">		ReportSvcStatus(gSvcStatus.dwCurrentState, NO_ERROR, 0);</span><br><span class="line">		return;</span><br><span class="line">	default:</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Stop-Service"><a href="#Stop-Service" class="headerlink" title="Stop Service"></a>Stop Service</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/12/13/Windows-Services/#more" rel="contents">
@@ -501,7 +517,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nothing">
+      <meta itemprop="name" content="Nobody">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -523,7 +539,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-26 01:33:14" itemprop="dateModified" datetime="2021-12-26T01:33:14+08:00">2021-12-26</time>
+                <time title="Modified: 2022-03-04 00:02:54" itemprop="dateModified" datetime="2022-03-04T00:02:54+08:00">2022-03-04</time>
               </span>
 
           
