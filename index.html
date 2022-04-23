@@ -247,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-17 22:58:32" itemprop="dateModified" datetime="2022-04-17T22:58:32+08:00">2022-04-17</time>
+                <time title="Modified: 2022-04-23 23:33:23" itemprop="dateModified" datetime="2022-04-23T23:33:23+08:00">2022-04-23</time>
               </span>
 
           
@@ -261,7 +261,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="生成-ssh-密钥"><a href="#生成-ssh-密钥" class="headerlink" title="生成 ssh 密钥"></a>生成 ssh 密钥</h1>
+          <p> Github 命令整理</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/03/28/Git/#more" rel="contents">
@@ -319,7 +319,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-28 00:49:22" itemprop="dateModified" datetime="2022-03-28T00:49:22+08:00">2022-03-28</time>
+                <time title="Modified: 2022-04-23 23:32:03" itemprop="dateModified" datetime="2022-04-23T23:32:03+08:00">2022-04-23</time>
               </span>
 
           
@@ -333,9 +333,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="驱动双机调试"><a href="#驱动双机调试" class="headerlink" title="驱动双机调试"></a>驱动双机调试</h1><blockquote>
-<p>环境：VS2019</p>
-</blockquote>
+          <p>调试相关的内容…</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/03/26/%E9%A9%B1%E5%8A%A8%E8%B0%83%E8%AF%95/#more" rel="contents">
@@ -534,6 +532,32 @@
   </span>
   <span class="author" itemprop="copyrightHolder">John</span>
 </div>
+
+<span id="sitetime"></span>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+        BirthDay = new Date("2/7/2022");//这个日期是可以修改的
+        today = new Date();
+        timeold = (today.getTime() - BirthDay.getTime());
+        sectimeold = timeold / 1000
+        secondsold = Math.floor(sectimeold);
+        msPerDay = 24 * 60 * 60 * 1000
+        e_daysold = timeold / msPerDay
+        daysold = Math.floor(e_daysold);
+        e_hrsold = (e_daysold - daysold) * 24;
+        hrsold = Math.floor(e_hrsold);
+        e_minsold = (e_hrsold - hrsold) * 60;
+        minsold = Math.floor((e_hrsold - hrsold) * 60);
+        seconds = Math.floor((e_minsold - minsold) * 60);
+		document.getElementById("sitetime").innerHTML=""+ daysold + " days " + hrsold + " hours " + minsold + " minutes " + seconds + " seconds ";
+	}
+	siteTime();
+</script>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
         
 <div class="busuanzi-count">
