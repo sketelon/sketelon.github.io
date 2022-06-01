@@ -20,19 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="参考链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_23350817&#x2F;article&#x2F;details&#x2F;106612504 备份一份自己看">
+  <meta name="description" content="TraceEvent使用指南   参考文章: https:&#x2F;&#x2F;blog.csdn.net&#x2F;u012308586&#x2F;article&#x2F;details&#x2F;97262638 重新整理一份简洁版的给自己看">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MFC 使用控制台">
+<meta property="og:title" content="Working Notes">
 <meta property="og:url" content="http://example.com/2022/04/28/MFC-%E4%BD%BF%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0/index.html">
 <meta property="og:site_name" content="Nobody">
-<meta property="og:description" content="参考链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_23350817&#x2F;article&#x2F;details&#x2F;106612504 备份一份自己看">
+<meta property="og:description" content="TraceEvent使用指南   参考文章: https:&#x2F;&#x2F;blog.csdn.net&#x2F;u012308586&#x2F;article&#x2F;details&#x2F;97262638 重新整理一份简洁版的给自己看">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/20220423-0.png">
 <meta property="og:image" content="http://example.com/images/20220429-0.png">
+<meta property="og:image" content="http://example.com/images/20220511.png">
 <meta property="article:published_time" content="2022-04-28T15:37:50.000Z">
-<meta property="article:modified_time" content="2022-05-01T14:47:57.853Z">
+<meta property="article:modified_time" content="2022-06-01T17:48:09.449Z">
 <meta property="article:author" content="KonoDioda">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/20220429-0.png">
+<meta name="twitter:image" content="http://example.com/images/20220423-0.png">
 
 <link rel="canonical" href="http://example.com/2022/04/28/MFC-%E4%BD%BF%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0/">
 
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title>MFC 使用控制台 | Nobody</title>
+  <title>Working Notes | Nobody</title>
   
 
 
@@ -167,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MFC 使用控制台
+          Working Notes
         </h1>
 
         <div class="post-meta">
@@ -184,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-01 22:47:57" itemprop="dateModified" datetime="2022-05-01T22:47:57+08:00">2022-05-01</time>
+                <time title="Modified: 2022-06-02 01:48:09" itemprop="dateModified" datetime="2022-06-02T01:48:09+08:00">2022-06-02</time>
               </span>
 
           
@@ -198,16 +200,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><hr>
+<h1><font color="green">TraceEvent使用指南</font></h1>
+<hr>
+<blockquote>
+<p>参考文章: <a target="_blank" rel="noopener" href="https://blog.csdn.net/u012308586/article/details/97262638">https://blog.csdn.net/u012308586/article/details/97262638</a></p>
+<p>重新整理一份简洁版的给自己看</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="1-Trace-头文件">1. Trace 头文件</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*++</span><br><span class="line"></span><br><span class="line">Module Name:</span><br><span class="line"></span><br><span class="line">    Trace.h</span><br><span class="line"></span><br><span class="line">Abstract:</span><br><span class="line"></span><br><span class="line">    Header file for the debug tracing related function defintions and macros.</span><br><span class="line"></span><br><span class="line">Environment:</span><br><span class="line"></span><br><span class="line">    Kernel mode</span><br><span class="line"></span><br><span class="line">--*&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; Define the tracing flags.</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; Tracing GUID - 221b6d83-1ef1-4cd4-95cb-029fb5f61407</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line"></span><br><span class="line">#define WPP_CONTROL_GUIDS                                              \</span><br><span class="line">    WPP_DEFINE_CONTROL_GUID(                                           \</span><br><span class="line">        myDriverTraceGuid, (221b6d83,1ef1,4cd4,95cb,029fb5f61407), \</span><br><span class="line">                                                                            \</span><br><span class="line">        WPP_DEFINE_BIT(MYDRIVER_ALL_INFO)                              \</span><br><span class="line">        WPP_DEFINE_BIT(TRACE_DRIVER)                                   \</span><br><span class="line">        WPP_DEFINE_BIT(TRACE_DEVICE)                                   \</span><br><span class="line">        WPP_DEFINE_BIT(TRACE_QUEUE)                                    \</span><br><span class="line">        )                             </span><br><span class="line"></span><br><span class="line">#define WPP_FLAG_LEVEL_LOGGER(flag, level)                                  \</span><br><span class="line">    WPP_LEVEL_LOGGER(flag)</span><br><span class="line"></span><br><span class="line">#define WPP_FLAG_LEVEL_ENABLED(flag, level)                                 \</span><br><span class="line">    (WPP_LEVEL_ENABLED(flag) &amp;&amp;                                             \</span><br><span class="line">     WPP_CONTROL(WPP_BIT_ ## flag).Level &gt;&#x3D; level)</span><br><span class="line"></span><br><span class="line">#define WPP_LEVEL_FLAGS_LOGGER(lvl,flags) \</span><br><span class="line">           WPP_LEVEL_LOGGER(flags)</span><br><span class="line"></span><br><span class="line">#define WPP_LEVEL_FLAGS_ENABLED(lvl, flags) \</span><br><span class="line">           (WPP_LEVEL_ENABLED(flags) &amp;&amp; WPP_CONTROL(WPP_BIT_ ## flags).Level &gt;&#x3D; lvl)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;           </span><br><span class="line">&#x2F;&#x2F; WPP orders static parameters before dynamic parameters. To support the Trace function</span><br><span class="line">&#x2F;&#x2F; defined below which sets FLAGS&#x3D;MYDRIVER_ALL_INFO, a custom macro must be defined to</span><br><span class="line">&#x2F;&#x2F; reorder the arguments to what the .tpl configuration file expects.</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">#define WPP_RECORDER_FLAGS_LEVEL_ARGS(flags, lvl) WPP_RECORDER_LEVEL_FLAGS_ARGS(lvl, flags)</span><br><span class="line">#define WPP_RECORDER_FLAGS_LEVEL_FILTER(flags, lvl) WPP_RECORDER_LEVEL_FLAGS_FILTER(lvl, flags)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; This comment block is scanned by the trace preprocessor to define our</span><br><span class="line">&#x2F;&#x2F; Trace function.</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; begin_wpp config</span><br><span class="line">&#x2F;&#x2F; FUNC Trace&#123;FLAGS&#x3D;MYDRIVER_ALL_INFO&#125;(LEVEL, MSG, ...);</span><br><span class="line">&#x2F;&#x2F; FUNC TraceEvents(LEVEL, FLAGS, MSG, ...);</span><br><span class="line">&#x2F;&#x2F; end_wpp</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-引入头文件">2.引入头文件</h2>
+<p>在输入日志的地方引入头文件</p>
+<pre>
+#include "Trace.h"
+#include "Driver.tmh"
+</pre>
+<h2 id="3-初始化并使用日志">3. 初始化并使用日志</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS</span><br><span class="line">DriverEntry(PDRIVER_OBJECT pDriverObject, PUNICODE_STRING pRegistryPath)</span><br><span class="line">&#123;</span><br><span class="line">	WPP_INIT_TRACING(pDriverObject, pRegistryPath);</span><br><span class="line"></span><br><span class="line">	TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, <span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line"></span><br><span class="line">	WPP_CLEANUP(pDriverObject);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="4-VS-配置">4. VS 配置</h2>
+<img src="/images/20220423-0.png" class="full-image">
+<hr>
+<h1><font color="green">MFC 使用控制台</font></h1>
+<hr>
+<blockquote>
 <p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23350817/article/details/106612504">https://blog.csdn.net/qq_23350817/article/details/106612504</a></p>
 <p>备份一份自己看</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="最简单的方式">最简单的方式</h2>
+<!-- more -->
 <p><code>editbin /subsystem:console $(OutDir)$(TargetName).exe</code></p>
 <img src="/images/20220429-0.png" class="full-image">
-<p><font color=gray size=4 font face="Syne Mono">原来特么这么简单…以前还用代码搞半天…</font></p>
-
+<p><font color=gray size=2 font face="Syne Mono">原来特么这么简单…以前还用代码搞半天…</font></p>
+<hr>
+<h1><font color="green">关于 ReflectiveDLL 注入崩溃</font></h1>
+<hr>
+<blockquote>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/stephenfewer/ReflectiveDLLInjection">https://github.com/stephenfewer/ReflectiveDLLInjection</a></p>
+</blockquote>
+<!-- more -->
+<p>新建了一个工程，将代码拷贝过来编译后，注入进程总会崩溃。猜是编译选项的问题，然后一个个和原工程比较，发现 <strong>Support Just My Code Debugging</strong> 的选项必须关闭，不知道为什么…</p>
+<img src="/images/20220511.png" width="100%" height="100%" >
     </div>
 
     
@@ -232,8 +264,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/04/23/TraceEvent%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="prev" title="TraceEvent使用指南">
-      <i class="fa fa-chevron-left"></i> TraceEvent使用指南
+    <a href="/2022/03/28/Git/" rel="prev" title="Github">
+      <i class="fa fa-chevron-left"></i> Github
     </a></div>
       <div class="post-nav-item">
     <a href="/2022/05/02/%E7%88%B1%E4%BD%A0%E5%B0%B1%E5%83%8F%E7%88%B1%E7%94%9F%E5%91%BD/" rel="next" title="爱你就像爱生命">
@@ -297,7 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">最简单的方式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">TraceEvent使用指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Trace-%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. Trace 头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BC%95%E5%85%A5%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">2.引入头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B9%B6%E4%BD%BF%E7%94%A8%E6%97%A5%E5%BF%97"><span class="nav-number">1.3.</span> <span class="nav-text">3. 初始化并使用日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-VS-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.4.</span> <span class="nav-text">4. VS 配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">MFC 使用控制台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">关于 ReflectiveDLL 注入崩溃</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -311,7 +343,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -350,7 +382,7 @@
 <script language=javascript>
 	function siteTime(){
 		window.setTimeout("siteTime()", 1000);
-        BirthDay = new Date("2/7/2022");//这个日期是可以修改的
+        BirthDay = new Date("5/8/2022");//这个日期是可以修改的
         today = new Date();
         timeold = (today.getTime() - BirthDay.getTime());
         sectimeold = timeold / 1000
