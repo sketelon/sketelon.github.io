@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css?family=Inconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="爱你就像爱生命">
-<meta property="og:url" content="http://example.com/2022/05/02/%E7%88%B1%E4%BD%A0%E5%B0%B1%E5%83%8F%E7%88%B1%E7%94%9F%E5%91%BD/index.html">
+  <meta name="description" content="如果很久不接触会发现即使最简单的命令也都不记得了，所以记录一下基本指令的意义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编语言">
+<meta property="og:url" content="http://example.com/2022/07/02/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.html">
 <meta property="og:site_name" content="Nobody">
+<meta property="og:description" content="如果很久不接触会发现即使最简单的命令也都不记得了，所以记录一下基本指令的意义">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/20201105-1.jpg">
-<meta property="article:published_time" content="2022-05-01T22:01:00.000Z">
-<meta property="article:modified_time" content="2022-05-01T22:04:25.936Z">
+<meta property="article:published_time" content="2022-07-02T14:06:15.000Z">
+<meta property="article:modified_time" content="2022-07-02T14:07:56.247Z">
 <meta property="article:author" content="KonoDioda">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/20201105-1.jpg">
 
-<link rel="canonical" href="http://example.com/2022/05/02/%E7%88%B1%E4%BD%A0%E5%B0%B1%E5%83%8F%E7%88%B1%E7%94%9F%E5%91%BD/">
+<link rel="canonical" href="http://example.com/2022/07/02/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>爱你就像爱生命 | Nobody</title>
+  <title>汇编语言 | Nobody</title>
   
 
 
@@ -76,7 +76,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -152,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/%E7%88%B1%E4%BD%A0%E5%B0%B1%E5%83%8F%E7%88%B1%E7%94%9F%E5%91%BD/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -165,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          爱你就像爱生命
+          汇编语言
         </h1>
 
         <div class="post-meta">
@@ -176,7 +180,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-05-02 06:01:00 / Modified: 06:04:25" itemprop="dateCreated datePublished" datetime="2022-05-02T06:01:00+08:00">2022-05-02</time>
+              <time title="Created: 2022-07-02 22:06:15 / Modified: 22:07:56" itemprop="dateCreated datePublished" datetime="2022-07-02T22:06:15+08:00">2022-07-02</time>
             </span>
 
           
@@ -190,24 +194,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/images/20201105-1.jpg" width="60%" height="80%" >
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><hr />
+<blockquote>
+<p>如果很久不接触会发现即使最简单的命令也都不记得了，所以记录一下基本指令的意义</p>
+</blockquote>
+<hr />
 <a id="more"></a>
-<hr>
-<p><font color=#FF6347 font face="幼圆">今天我感到非常烦闷 <br><br>
-我想念你 <br><br>
-我想起夜幕降临的时候 <br><br>
-和你踏着星光走去 <br><br>
-想起了灯光照着树叶的时候 <br><br>
-踏着婆娑的灯影走去 <br><br>
-想起了欲语又塞的时候 <br><br>
-和你在一起 <br><br>
-你是我的战友 <br><br>
-因此我想念你 <br><br>
-当我跨过沉沦的一切 <br><br>
-向着永恒开战的时候 <br><br>
-你是我的军旗 <br></font></p>
-<hr>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=427016671&auto=1&height=66"></iframe>
     </div>
 
     
@@ -232,13 +224,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/04/28/MFC-%E4%BD%BF%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0/" rel="prev" title="Working Notes">
-      <i class="fa fa-chevron-left"></i> Working Notes
+    <a href="/2022/06/29/%20general_knowledge_of_philosophy/" rel="prev" title="一些哲学常识">
+      <i class="fa fa-chevron-left"></i> 一些哲学常识
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/05/02/MarkDown-%E4%B8%BA%E5%AD%97%E4%BD%93%E6%B7%BB%E5%8A%A0%E9%A2%9C%E8%89%B2/" rel="next" title="MarkDown: 为字体添加颜色">
-      MarkDown: 为字体添加颜色 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -310,9 +299,17 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>
@@ -349,7 +346,7 @@
 <script language=javascript>
 	function siteTime(){
 		window.setTimeout("siteTime()", 1000);
-        BirthDay = new Date("5/8/2022");//这个日期是可以修改的
+        BirthDay = new Date("6/11/2022");//这个日期是可以修改的
         today = new Date();
         timeold = (today.getTime() - BirthDay.getTime());
         sectimeold = timeold / 1000
@@ -417,6 +414,8 @@
 
 
 
+
+  
 
   
 
