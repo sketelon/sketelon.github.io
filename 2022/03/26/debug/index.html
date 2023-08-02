@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/images/20220327-1.png">
 <meta property="og:image" content="http://example.com/images/20220327-2.jpg">
 <meta property="article:published_time" content="2022-03-26T09:22:57.000Z">
-<meta property="article:modified_time" content="2022-06-29T18:15:20.798Z">
+<meta property="article:modified_time" content="2022-10-14T13:05:23.526Z">
 <meta property="article:author" content="KonoDioda">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/20220327-0.png">
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-30 02:15:20" itemprop="dateModified" datetime="2022-06-30T02:15:20+08:00">2022-06-30</time>
+                <time title="Modified: 2022-10-14 21:05:23" itemprop="dateModified" datetime="2022-10-14T21:05:23+08:00">2022-10-14</time>
               </span>
 
           
@@ -205,20 +205,34 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div class="note success">
-            <p>调试相关的内容… </p>
+            <p>调试相关的内容…</p>
           </div>
 <a id="more"></a>
-<h1 id="驱动双机调试"><a href="#驱动双机调试" class="headerlink" title="驱动双机调试"></a>驱动双机调试</h1><p>环境：VS2019</p>
-<h2 id="1-开启调试功能"><a href="#1-开启调试功能" class="headerlink" title="1. 开启调试功能"></a>1. 开启调试功能</h2><p>在被调试机输入命令：</p>
+<h1 id="符号文件下载"><a class="markdownIt-Anchor" href="#符号文件下载"></a> 符号文件下载</h1>
+<p>需要保证 WinDbg 程序完整</p>
+<p><code>symchk.exe /r c:\windows\system32 /s SRV*c:\symbols\*http://msdl.microsoft.com/download/symbols</code></p>
+<h1 id="驱动双机调试"><a class="markdownIt-Anchor" href="#驱动双机调试"></a> 驱动双机调试</h1>
+<p>环境：VS2019</p>
+<h2 id="1-开启调试功能"><a class="markdownIt-Anchor" href="#1-开启调试功能"></a> 1. 开启调试功能</h2>
+<p>在被调试机输入命令：</p>
 <p><code>bcdedit /debug on</code></p>
 <p><code>bcdedit /dbgsettings net hostip:192.168.232.132 port:55555 key:bcn.own.safe.key</code></p>
 <p><code>bcdedit /dbgsettings</code></p>
 <p>hostip 指的是装有 vs2019 的机器的 ip 地址</p>
-<p><img src="/images/20220327-0.png" class="full-image" /></p>
-<h2 id="2-安装必要程序"><a href="#2-安装必要程序" class="headerlink" title="2.安装必要程序"></a>2.安装必要程序</h2><p>在装有 vs2019 的机器中搜索 <code>WDK Test Target Setup</code>，安装在被调试机中。</p>
-<h2 id="3-配置-vs2019"><a href="#3-配置-vs2019" class="headerlink" title="3. 配置 vs2019"></a>3. 配置 vs2019</h2><p>Network host name 指的是被调试机的 ip 地址<br><img src="/images/20220327-1.png" class="full-image"></p>
+<img src="/images/20220327-0.png" class="full-image" />
+<h2 id="2安装必要程序"><a class="markdownIt-Anchor" href="#2安装必要程序"></a> 2.安装必要程序</h2>
+<p>在装有 vs2019 的机器中搜索 <code>WDK Test Target Setup</code>，安装在被调试机中。</p>
+<h2 id="3-配置-vs2019"><a class="markdownIt-Anchor" href="#3-配置-vs2019"></a> 3. 配置 vs2019</h2>
+<p>Network host name 指的是被调试机的 ip 地址<br />
+<img src="/images/20220327-1.png" class="full-image"></p>
 <p>Host IP 指的是本机 ip 地址</p>
-<p><img src="/images/20220327-2.jpg" class="full-image" /></p>
+<img src="/images/20220327-2.jpg" class="full-image" />
+<h1 id="windows-7-驱动调试-dbgview-不显示问题"><a class="markdownIt-Anchor" href="#windows-7-驱动调试-dbgview-不显示问题"></a> Windows 7 驱动调试 DbgView 不显示问题</h1>
+<pre>
+Windows Registry Editor Version 5.00
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Debug Print Filter]
+"DEFAULT"=dword:0000000f
+</pre>
 
     </div>
 
@@ -309,7 +323,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A9%B1%E5%8A%A8%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">驱动双机调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BC%80%E5%90%AF%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">1. 开启调试功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">2.安装必要程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE-vs2019"><span class="nav-number">1.3.</span> <span class="nav-text">3. 配置 vs2019</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text"> 符号文件下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A9%B1%E5%8A%A8%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text"> 驱动双机调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BC%80%E5%90%AF%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD"><span class="nav-number">2.1.</span> <span class="nav-text"> 1. 开启调试功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text"> 2.安装必要程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE-vs2019"><span class="nav-number">2.3.</span> <span class="nav-text"> 3. 配置 vs2019</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#windows-7-%E9%A9%B1%E5%8A%A8%E8%B0%83%E8%AF%95-dbgview-%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text"> Windows 7 驱动调试 DbgView 不显示问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -323,7 +337,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -359,7 +373,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -370,7 +384,7 @@
 <script language=javascript>
 	function siteTime(){
 		window.setTimeout("siteTime()", 1000);
-        BirthDay = new Date("6/11/2022");//这个日期是可以修改的
+        BirthDay = new Date("10/22/2022");//这个日期是可以修改的
         today = new Date();
         timeold = (today.getTime() - BirthDay.getTime());
         sectimeold = timeold / 1000
